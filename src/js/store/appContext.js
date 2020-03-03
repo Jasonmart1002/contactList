@@ -21,14 +21,17 @@ const injectContext = PassedComponent => {
 			})
 		);
 
-		useEffect(() => {
-			fetch("https://assets.breatheco.de/apis/fake/contact/agenda/jason")
-				.then(r => r.json())
-				.then(data => {
-					let { store } = state;
-					setState({ store: { ...store, contacts: data } });
-				});
-		}, []);
+		useEffect(
+			() => {
+				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/jason")
+					.then(r => r.json())
+					.then(data => {
+						let { store } = state;
+						setState({ store: { ...store, contacts: data } });
+					});
+			},
+			[state]
+		);
 
 		// the initial value for the context its not null anymore, but the current state of this component,
 		// the context will have a getStore and setStore functions available then, because they were declared

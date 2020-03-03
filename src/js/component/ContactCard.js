@@ -5,10 +5,24 @@ import MikePhoto from "../../img/m101.jpg";
 import { Context } from "../store/appContext";
 
 export const ContactCard = props => {
-	const [contacts, setContacts] = useState(null);
 	const { store, actions } = useContext(Context);
-	console.log(store.contacts);
 
+	const pMethod = i => {
+		fetch("https://assets.breatheco.de/apis/fake/contact/" + i, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(i)
+		})
+			.then(response => response.json())
+			.then(i => {
+				console.log("Success:", i);
+			})
+			.catch(error => {
+				console.error("Error:", error);
+			});
+	};
 	return store.contacts === []
 		? "Loading..."
 		: store.contacts.map(t => (
@@ -26,7 +40,11 @@ export const ContactCard = props => {
 								<button className="btn">
 									<i className="fas fa-pencil-alt mr-3" />
 								</button>
-								<button className="btn" onClick={() => props.onDelete()}>
+								<button
+									className="btn"
+									onClick={() => {
+										pMethod(t.id);
+									}}>
 									<i className="fas fa-trash-alt" />
 								</button>
 							</div>
@@ -39,9 +57,9 @@ export const ContactCard = props => {
 								className="fa fa-phone fa-fw text-muted mr-3"
 								data-toggle="tooltip"
 								title=""
-								data-original-title="(870) 288-4149"
+								data-original-title="{t.phone}"
 							/>
-							<span className="text-muted small">(870) 288-4149</span>
+							<span className="text-muted small">{t.phone}</span>
 							<br />
 							<span
 								className="fa fa-envelope fa-fw text-muted mr-3"
@@ -49,7 +67,7 @@ export const ContactCard = props => {
 								data-original-title=""
 								title=""
 							/>
-							<span className="text-muted small text-truncate">mike.ana@example.com</span>
+							<span className="text-muted small text-truncate">{t.email}</span>
 						</div>
 					</div>
 				</li>

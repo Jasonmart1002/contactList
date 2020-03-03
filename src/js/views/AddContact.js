@@ -5,27 +5,14 @@ import { Context } from "../store/appContext";
 export const AddContact = () => {
 	const { store, actions } = useContext(Context);
 	const [value, setValue] = useState("");
-	// const [name, setName] = useState("");
-	// const [email, setEmail] = useState("");
-	// const [phone, setPhone] = useState("");
-	// const [address, setAddress] = useState("");
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [phone, setPhone] = useState("");
+	const [address, setAddress] = useState("");
 
 	const onValueChange = ({ target: { value } }) => {
 		setValue(value);
 	};
-	// const onNameChange = ({ target: { name } }) => {
-	// 	setName(name);
-	// };
-
-	// const onEmailChange = ({ target: { email } }) => {
-	// 	setEmail(email);
-	// };
-	// const onPhoneChange = ({ target: { phone } }) => {
-	// 	setPhone(phone);
-	// };
-	// const onAddressChange = ({ target: { address } }) => {
-	// 	setAddress(address);
-	// };
 
 	const update = e => {
 		e.preventDefault();
@@ -50,20 +37,17 @@ export const AddContact = () => {
 			});
 	};
 
-	//WHAT I DID FOR TODOS///////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	const inputHandle = val => {
+	const inputHandle = i => {
 		const data = {
-			full_name: val,
-			email: val,
-			phone: val,
-			address: val
+			full_name: name,
+			email: email,
+			phone: phone,
+			address: address,
+			agenda_slug: "jason"
 		};
 
 		pMethod(data);
 	};
-
-	//END///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	return (
 		<div className="container">
@@ -76,7 +60,7 @@ export const AddContact = () => {
 							type="text"
 							className="form-control"
 							placeholder="Full Name"
-							// onChange={onValueChange}
+							onChange={e => setName(e.target.value)}
 						/>
 					</div>
 					<div className="form-group">
@@ -85,7 +69,7 @@ export const AddContact = () => {
 							type="email"
 							className="form-control"
 							placeholder="Enter email"
-							// onChange={onValueChange}
+							onChange={e => setEmail(e.target.value)}
 						/>
 					</div>
 					<div className="form-group">
@@ -94,7 +78,7 @@ export const AddContact = () => {
 							type="phone"
 							className="form-control"
 							placeholder="Enter phone"
-							// onChange={onValueChange}
+							onChange={e => setPhone(e.target.value)}
 						/>
 					</div>
 					<div className="form-group">
@@ -103,12 +87,17 @@ export const AddContact = () => {
 							type="text"
 							className="form-control"
 							placeholder="Enter address"
-							// onChange={onValueChange}
+							onChange={e => setAddress(e.target.value)}
 						/>
 					</div>
-					<button type="button" className="btn btn-primary form-control" onClick={() => inputHandle(value)}>
-						save
-					</button>
+					<Link to="/">
+						<button
+							type="button"
+							className="btn btn-primary form-control"
+							onClick={() => inputHandle(value)}>
+							save
+						</button>
+					</Link>
 					<Link className="mt-3 w-100 text-center" to="/">
 						or get back to contacts
 					</Link>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import MikePhoto from "../../img/m101.jpg";
 import { Context } from "../store/appContext";
 
 export const ContactCard = props => {
@@ -30,7 +29,7 @@ export const ContactCard = props => {
 					<div className="row w-100">
 						<div className="col-12 col-sm-6 col-md-3 px-0">
 							<img
-								src={MikePhoto}
+								src="https://i.ytimg.com/vi/KQ67fDlqqhc/maxresdefault.jpg"
 								alt="Mike Anamendolla"
 								className="rounded-circle mx-auto d-block img-fluid"
 							/>

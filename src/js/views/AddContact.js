@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export const AddContact = () => {
@@ -6,10 +6,23 @@ export const AddContact = () => {
 	const [email, setEmail] = useState("");
 	const [phone, setPhone] = useState("");
 	const [address, setAddress] = useState("");
+	const [newContact, setNewContact] = useState({});
+	const onNameChange = ({ target: { name } }) => {
+		setName(name);
+	};
+	const onEmailChange = ({ target: { email } }) => {
+		setEmail(email);
+	};
+	const onPhoneChange = ({ target: { phone } }) => {
+		setPhone(phone);
+	};
+	const onAddressChange = ({ target: { address } }) => {
+		setAddress(address);
+	};
 
 	const pMethod = i => {
 		fetch("https://assets.breatheco.de/apis/fake/contact/", {
-			method: "PUT",
+			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
 			},
@@ -24,17 +37,6 @@ export const AddContact = () => {
 			});
 	};
 
-	const inputHandle = val => {
-		const data = [
-			...tasks,
-			{
-				label: val
-			}
-		];
-
-		pMethod(data);
-	};
-
 	return (
 		<div className="container">
 			<div>
@@ -42,25 +44,52 @@ export const AddContact = () => {
 				<form>
 					<div className="form-group">
 						<label>Full Name</label>
-						<input type="text" className="form-control" placeholder="Full Name" value={name} />
+						<input
+							type="name"
+							className="form-control"
+							placeholder="Enter full name"
+							onChange={onNameChange}
+						/>
 					</div>
 					<div className="form-group">
 						<label>Email</label>
-						<input type="email" className="form-control" placeholder="Enter email" value={email} />
+						<input
+							type="email"
+							className="form-control"
+							placeholder="Enter email"
+							onChange={onEmailChange}
+						/>
 					</div>
 					<div className="form-group">
 						<label>Phone</label>
-						<input type="phone" className="form-control" placeholder="Enter phone" value={phone} />
+						<input
+							type="phone"
+							className="form-control"
+							placeholder="Enter phone"
+							onChange={onPhoneChange}
+						/>
 					</div>
 					<div className="form-group">
 						<label>Address</label>
-						<input type="text" className="form-control" placeholder="Enter address" value={address} />
+						<input
+							type="text"
+							className="form-control"
+							placeholder="Enter address"
+							onChange={onAddressChange}
+						/>
 					</div>
 					<button
 						type="button"
 						className="btn btn-primary form-control"
 						onClick={() => {
-							pMethod();
+							setNewContact({
+								full_name: { name },
+								email: { email },
+								phone: { phone },
+								address: { address },
+								agenda_slug: "jason"
+							}),
+								pMethod(newContact);
 						}}>
 						save
 					</button>

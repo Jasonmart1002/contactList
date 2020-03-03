@@ -7,7 +7,7 @@ import { Context } from "../store/appContext";
 export const ContactCard = props => {
 	const { store, actions } = useContext(Context);
 
-	const pMethod = i => {
+	const dMethod = i => {
 		fetch("https://assets.breatheco.de/apis/fake/contact/" + i, {
 			method: "DELETE",
 			headers: {
@@ -43,7 +43,7 @@ export const ContactCard = props => {
 								<button
 									className="btn"
 									onClick={() => {
-										pMethod(t.id);
+										dMethod(t.id);
 									}}>
 									<i className="fas fa-trash-alt" />
 								</button>

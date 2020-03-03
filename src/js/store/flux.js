@@ -3,10 +3,7 @@ const getState = ({ getStore, setStore }) => {
 		store: {
 			contacts: []
 		},
-		actions: {
-			//(Arrow) Functions that update the Store
-			// Remember to use the scope: scope.state.store & scope.setState()
-		}
+		actions: {}
 	};
 };
 

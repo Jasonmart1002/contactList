@@ -2,9 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 export const ContactCard = props => {
 	const { store, actions } = useContext(Context);
+	const [card, setCard] = useState(true);
 
 	const dMethod = i => {
 		fetch("https://assets.breatheco.de/apis/fake/contact/" + i, {
@@ -36,7 +38,13 @@ export const ContactCard = props => {
 						</div>
 						<div className="col-12 col-sm-6 col-md-9 text-center text-sm-left">
 							<div className=" float-right">
-								<button className="btn">
+								<button
+									className="btn"
+									onClick={() => {
+										{
+											setCard(false);
+										}
+									}}>
 									<i className="fas fa-pencil-alt mr-3" />
 								</button>
 								<button
@@ -47,10 +55,11 @@ export const ContactCard = props => {
 									<i className="fas fa-trash-alt" />
 								</button>
 							</div>
-							<label className="name lead">{t.full_name}</label>
+							{card === true ? <label className="name lead">{t.full_name}</label> : <input />}
 							<br />
 							<i className="fas fa-map-marker-alt text-muted mr-3" />
-							<span className="text-muted">{t.address}</span>
+							{card === true ? <span className="text-muted">{t.address}</span> : <input />}
+
 							<br />
 							<span
 								className="fa fa-phone fa-fw text-muted mr-3"
@@ -58,7 +67,7 @@ export const ContactCard = props => {
 								title=""
 								data-original-title="{t.phone}"
 							/>
-							<span className="text-muted small">{t.phone}</span>
+							{card === true ? <span className="text-muted small">{t.phone}</span> : <input />}
 							<br />
 							<span
 								className="fa fa-envelope fa-fw text-muted mr-3"
@@ -66,7 +75,11 @@ export const ContactCard = props => {
 								data-original-title=""
 								title=""
 							/>
-							<span className="text-muted small text-truncate">{t.email}</span>
+							{card === true ? (
+								<span className="text-muted small text-truncate">{t.email}</span>
+							) : (
+								<input />
+							)}
 						</div>
 					</div>
 				</li>

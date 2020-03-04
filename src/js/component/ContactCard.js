@@ -12,6 +12,7 @@ export const ContactCard = props => {
 	const [email, setEmail] = useState("");
 	const [phone, setPhone] = useState("");
 	const [address, setAddress] = useState("");
+	const [id, setId] = useState("");
 
 	const onValueChange = ({ target: { value } }) => {
 		setValue(value);
@@ -19,7 +20,7 @@ export const ContactCard = props => {
 
 	const pMethod = i => {
 		console.log(i);
-		fetch("https://assets.breatheco.de/apis/fake/contact/agenda/jason", {
+		fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json"
@@ -84,6 +85,8 @@ export const ContactCard = props => {
 											card === true ? setCard(false) : setCard(true);
 										}
 										inputHandle(value);
+										setId(t.id);
+										console.log(id);
 									}}>
 									<i className="fas fa-pencil-alt mr-3" />
 								</button>

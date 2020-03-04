@@ -7,7 +7,45 @@ import { Link } from "react-router-dom";
 export const ContactCard = props => {
 	const { store, actions } = useContext(Context);
 	const [card, setCard] = useState(true);
+	const [value, setValue] = useState("");
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [phone, setPhone] = useState("");
+	const [address, setAddress] = useState("");
 
+	const onValueChange = ({ target: { value } }) => {
+		setValue(value);
+	};
+
+	const pMethod = i => {
+		console.log(i);
+		fetch("https://assets.breatheco.de/apis/fake/contact/", {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(i)
+		})
+			.then(response => response.json())
+			.then(i => {
+				console.log("Success:", i);
+			})
+			.catch(error => {
+				console.error("Error:", error);
+			});
+	};
+
+	const inputHandle = i => {
+		const data = {
+			full_name: name,
+			email: email,
+			phone: phone,
+			address: address,
+			agenda_slug: "jason"
+		};
+
+		pMethod(data);
+	};
 	const dMethod = i => {
 		fetch("https://assets.breatheco.de/apis/fake/contact/" + i, {
 			method: "DELETE",
@@ -24,6 +62,7 @@ export const ContactCard = props => {
 				console.error("Error:", error);
 			});
 	};
+
 	return store.contacts === []
 		? "Loading..."
 		: store.contacts.map(t => (
@@ -44,6 +83,7 @@ export const ContactCard = props => {
 										{
 											card === true ? setCard(false) : setCard(true);
 										}
+										inputHandle(value);
 									}}>
 									<i className="fas fa-pencil-alt mr-3" />
 								</button>
@@ -58,14 +98,14 @@ export const ContactCard = props => {
 							{card === true ? (
 								<label className="name lead">{t.full_name}</label>
 							) : (
-								<input value={t.full_name} />
+								<input placeholder={t.full_name} onChange={e => setName(e.target.value)} />
 							)}
 							<br />
 							<i className="fas fa-map-marker-alt text-muted mr-3" />
 							{card === true ? (
 								<span className="text-muted">{t.address}</span>
 							) : (
-								<input value={t.address} />
+								<input placeholder={t.address} onChange={e => setAddress(e.target.value)} />
 							)}
 
 							<br />
@@ -78,7 +118,7 @@ export const ContactCard = props => {
 							{card === true ? (
 								<span className="text-muted small">{t.phone}</span>
 							) : (
-								<input value={t.phone} />
+								<input placeholder={t.phone} onChange={e => setPhone(e.target.value)} />
 							)}
 							<br />
 							<span
@@ -90,7 +130,7 @@ export const ContactCard = props => {
 							{card === true ? (
 								<span className="text-muted small text-truncate">{t.email}</span>
 							) : (
-								<input value={t.email} />
+								<input placeholder={t.email} onChange={e => setEmail(e.target.value)} />
 							)}
 						</div>
 					</div>

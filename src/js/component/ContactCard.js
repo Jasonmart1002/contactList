@@ -84,9 +84,12 @@ export const ContactCard = props => {
 										{
 											card === true ? setCard(false) : setCard(true);
 										}
+										setName("");
+										setPhone("");
+										setEmail("");
+										setAddress("");
 										inputHandle(value);
 										setId(t.id);
-										console.log(id);
 									}}>
 									<i className="fas fa-pencil-alt mr-3" />
 								</button>
@@ -99,14 +102,14 @@ export const ContactCard = props => {
 								</button>
 							</div>
 							{t.id === id && card === true ? (
-								<input value={t.full_name} onChange={e => setName(e.target.value)} />
+								<input value={name} onChange={e => setName(e.target.value)} />
 							) : (
 								<label className="name lead">{t.full_name}</label>
 							)}
 							<br />
 							<i className="fas fa-map-marker-alt text-muted mr-3" />
 							{t.id === id && card === true ? (
-								<input value={t.address} onChange={e => setAddress(e.target.value)} />
+								<input value={address} onChange={e => setAddress(e.target.value)} />
 							) : (
 								<span className="text-muted">{t.address}</span>
 							)}
@@ -119,7 +122,7 @@ export const ContactCard = props => {
 								data-original-title="{t.phone}"
 							/>
 							{t.id === id && card === true ? (
-								<input value={t.phone} onChange={e => setPhone(e.target.value)} />
+								<input value={phone} onChange={e => setPhone(e.target.value)} />
 							) : (
 								<span className="text-muted small">{t.phone}</span>
 							)}
@@ -131,7 +134,7 @@ export const ContactCard = props => {
 								title=""
 							/>
 							{t.id === id && card === true ? (
-								<input value={t.email} onChange={e => setEmail(e.target.value)} />
+								<input value={email} onChange={e => setEmail(e.target.value)} />
 							) : (
 								<span className="text-muted small text-truncate">{t.email}</span>
 							)}

@@ -98,17 +98,17 @@ export const ContactCard = props => {
 									<i className="fas fa-trash-alt" />
 								</button>
 							</div>
-							{card === true ? (
-								<label className="name lead">{t.full_name}</label>
-							) : (
+							{t.id === id && card === true ? (
 								<input placeholder={t.full_name} onChange={e => setName(e.target.value)} />
+							) : (
+								<label className="name lead">{t.full_name}</label>
 							)}
 							<br />
 							<i className="fas fa-map-marker-alt text-muted mr-3" />
-							{card === true ? (
-								<span className="text-muted">{t.address}</span>
-							) : (
+							{t.id === id && card === true ? (
 								<input placeholder={t.address} onChange={e => setAddress(e.target.value)} />
+							) : (
+								<span className="text-muted">{t.address}</span>
 							)}
 
 							<br />
@@ -118,10 +118,10 @@ export const ContactCard = props => {
 								title=""
 								data-original-title="{t.phone}"
 							/>
-							{card === true ? (
-								<span className="text-muted small">{t.phone}</span>
-							) : (
+							{t.id === id && card === true ? (
 								<input placeholder={t.phone} onChange={e => setPhone(e.target.value)} />
+							) : (
+								<span className="text-muted small">{t.phone}</span>
 							)}
 							<br />
 							<span
@@ -130,10 +130,10 @@ export const ContactCard = props => {
 								data-original-title=""
 								title=""
 							/>
-							{card === true ? (
-								<span className="text-muted small text-truncate">{t.email}</span>
-							) : (
+							{t.id === id && card === true ? (
 								<input placeholder={t.email} onChange={e => setEmail(e.target.value)} />
+							) : (
+								<span className="text-muted small text-truncate">{t.email}</span>
 							)}
 						</div>
 					</div>

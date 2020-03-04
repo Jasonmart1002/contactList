@@ -99,14 +99,14 @@ export const ContactCard = props => {
 								</button>
 							</div>
 							{t.id === id && card === true ? (
-								<input placeholder={t.full_name} onChange={e => setName(e.target.value)} />
+								<input value={t.full_name} onChange={e => setName(e.target.value)} />
 							) : (
 								<label className="name lead">{t.full_name}</label>
 							)}
 							<br />
 							<i className="fas fa-map-marker-alt text-muted mr-3" />
 							{t.id === id && card === true ? (
-								<input placeholder={t.address} onChange={e => setAddress(e.target.value)} />
+								<input value={t.address} onChange={e => setAddress(e.target.value)} />
 							) : (
 								<span className="text-muted">{t.address}</span>
 							)}
@@ -119,7 +119,7 @@ export const ContactCard = props => {
 								data-original-title="{t.phone}"
 							/>
 							{t.id === id && card === true ? (
-								<input placeholder={t.phone} onChange={e => setPhone(e.target.value)} />
+								<input value={t.phone} onChange={e => setPhone(e.target.value)} />
 							) : (
 								<span className="text-muted small">{t.phone}</span>
 							)}
@@ -131,7 +131,7 @@ export const ContactCard = props => {
 								title=""
 							/>
 							{t.id === id && card === true ? (
-								<input placeholder={t.email} onChange={e => setEmail(e.target.value)} />
+								<input value={t.email} onChange={e => setEmail(e.target.value)} />
 							) : (
 								<span className="text-muted small text-truncate">{t.email}</span>
 							)}

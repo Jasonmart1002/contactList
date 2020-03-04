@@ -42,7 +42,7 @@ export const ContactCard = props => {
 									className="btn"
 									onClick={() => {
 										{
-											setCard(false);
+											card === true ? setCard(false) : setCard(true);
 										}
 									}}>
 									<i className="fas fa-pencil-alt mr-3" />
@@ -55,10 +55,18 @@ export const ContactCard = props => {
 									<i className="fas fa-trash-alt" />
 								</button>
 							</div>
-							{card === true ? <label className="name lead">{t.full_name}</label> : <input />}
+							{card === true ? (
+								<label className="name lead">{t.full_name}</label>
+							) : (
+								<input value={t.full_name} />
+							)}
 							<br />
 							<i className="fas fa-map-marker-alt text-muted mr-3" />
-							{card === true ? <span className="text-muted">{t.address}</span> : <input />}
+							{card === true ? (
+								<span className="text-muted">{t.address}</span>
+							) : (
+								<input value={t.address} />
+							)}
 
 							<br />
 							<span
@@ -67,7 +75,11 @@ export const ContactCard = props => {
 								title=""
 								data-original-title="{t.phone}"
 							/>
-							{card === true ? <span className="text-muted small">{t.phone}</span> : <input />}
+							{card === true ? (
+								<span className="text-muted small">{t.phone}</span>
+							) : (
+								<input value={t.phone} />
+							)}
 							<br />
 							<span
 								className="fa fa-envelope fa-fw text-muted mr-3"
@@ -78,7 +90,7 @@ export const ContactCard = props => {
 							{card === true ? (
 								<span className="text-muted small text-truncate">{t.email}</span>
 							) : (
-								<input />
+								<input value={t.email} />
 							)}
 						</div>
 					</div>

@@ -19,7 +19,7 @@ export const ContactCard = props => {
 
 	const pMethod = i => {
 		console.log(i);
-		fetch("https://assets.breatheco.de/apis/fake/contact/", {
+		fetch("https://assets.breatheco.de/apis/fake/contact/agenda/jason", {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json"

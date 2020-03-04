@@ -21,7 +21,7 @@ export const AddContact = () => {
 
 	const pMethod = i => {
 		console.log(i);
-		fetch("https://assets.breatheco.de/apis/fake/contact/agenda/jason", {
+		fetch("https://assets.breatheco.de/apis/fake/contact/", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
